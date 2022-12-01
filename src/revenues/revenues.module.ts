@@ -8,5 +8,6 @@ import { Revenue } from './entities/revenue.entity';
   imports: [TypeOrmModule.forFeature([Revenue])],
   controllers: [RevenuesController],
   providers: [RevenuesService],
+  exports: [RevenuesService, RevenuesModule]
 })
 export class RevenuesModule { }

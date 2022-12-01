@@ -19,6 +19,14 @@ export class ExpensesService {
     return await this.ExpenseRepository.find();
   }
 
+  async findByUserId(id: number){
+    return await this.ExpenseRepository.find({
+      where: {
+        user_id: id
+      }
+    })
+  }
+
   async findOne(id: number) {
     return await this.ExpenseRepository.findOne({
       where: {

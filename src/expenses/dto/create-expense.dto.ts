@@ -14,4 +14,8 @@ export class CreateExpenseDto {
 
     @ApiProperty({ type: String, description: 'descricao do gasto' })
     description: string;
+
+
+    @ApiProperty({ type: Number, description: 'id do usuário' })
+    user_id: number;
 }

@@ -27,6 +27,15 @@ export class RevenuesService {
     });
   }
 
+
+  async findByUserId(id: number){
+    return await this.RevenueRepository.find({
+      where: {
+        user_id: id
+      }
+    })
+  }
+
   async update(id: number, updateRevenueDto: UpdateRevenueDto) {
     return await this.RevenueRepository.update(id, updateRevenueDto);
   }

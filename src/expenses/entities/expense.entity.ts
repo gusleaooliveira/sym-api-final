@@ -19,4 +19,8 @@ export class Expense {
 
     @Column()
     description: string;
+
+
+    @Column()
+    user_id: number;
 }

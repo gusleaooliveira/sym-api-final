@@ -16,4 +16,9 @@ export class Revenue {
 
     @Column()
     frequency: string;
+
+
+
+    @Column()
+    user_id: number;
 }

@@ -11,4 +11,7 @@ export class CreateRevenueDto {
 
     @ApiProperty({ type: String, description: 'frequencia do recebimento' })
     frequency: string;
+
+    @ApiProperty({ type: Number, description: 'id do usuário' })
+    user_id: number;
 }
