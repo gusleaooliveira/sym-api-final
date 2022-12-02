@@ -15,8 +15,12 @@ export class RevenuesService {
     return await this.RevenueRepository.save(createRevenueDto);
   }
 
-  async findAll() {
-    return await this.RevenueRepository.find();
+  async findAll(user_id: number) {
+    return await this.RevenueRepository.find({
+      where: {
+        user_id: user_id,
+      },
+    });
   }
 
   async findOne(id: number) {
@@ -27,13 +31,12 @@ export class RevenuesService {
     });
   }
 
-
-  async findByUserId(id: number){
+  async findByUserId(id: number) {
     return await this.RevenueRepository.find({
       where: {
-        user_id: id
-      }
-    })
+        user_id: id,
+      },
+    });
   }
 
   async update(id: number, updateRevenueDto: UpdateRevenueDto) {

@@ -28,9 +28,9 @@ export class RevenuesController {
     return this.revenuesService.create(createRevenueDto);
   }
 
-  @Get()
-  findAll() {
-    return this.revenuesService.findAll();
+  @Get('/all/:user_id')
+  findAll(@Param('user_id') user_id: number) {
+    return this.revenuesService.findAll(user_id);
   }
 
   @Get(':id')
