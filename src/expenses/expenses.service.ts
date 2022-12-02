@@ -15,16 +15,20 @@ export class ExpensesService {
     return await this.ExpenseRepository.save(createExpenseDto);
   }
 
-  async findAll() {
-    return await this.ExpenseRepository.find();
-  }
-
-  async findByUserId(id: number){
+  async findAll(id: number) {
     return await this.ExpenseRepository.find({
       where: {
-        user_id: id
-      }
-    })
+        user_id: id,
+      },
+    });
+  }
+
+  async findByUserId(id: number) {
+    return await this.ExpenseRepository.find({
+      where: {
+        user_id: id,
+      },
+    });
   }
 
   async findOne(id: number) {

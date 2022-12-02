@@ -28,9 +28,9 @@ export class ExpensesController {
     return this.expensesService.create(createExpenseDto);
   }
 
-  @Get()
-  findAll() {
-    return this.expensesService.findAll();
+  @Get('/all/:user_id')
+  findAll(@Param('user_id') user_id: number) {
+    return this.expensesService.findAll(user_id);
   }
 
   @Get(':id')
