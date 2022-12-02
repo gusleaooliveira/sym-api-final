@@ -72,6 +72,8 @@ export class DashboardController {
         case 'Frequente': total_entradas_recorrentes += revenue.value; break;
         default: total_entradas_eventuais += revenue.value; break;
       }
+
+      
     })
     
     total_saldo = (total_revenues - total_espenses)

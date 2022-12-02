@@ -9,6 +9,7 @@ import { TasksModule } from './tasks/tasks.module';
 import { RevenuesModule } from './revenues/revenues.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { AlertsModule } from './alerts/alerts.module';
 
 @Module({
   imports: [
@@ -25,6 +26,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
     TasksModule,
     RevenuesModule,
     DashboardModule,
+    AlertsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

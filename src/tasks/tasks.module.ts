@@ -3,10 +3,12 @@ import { TasksService } from './tasks.service';
 import { TasksController } from './tasks.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Task } from './entities/task.entity';
+import { ScheduleModule } from '@nestjs/schedule';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Task])],
+  imports: [ScheduleModule.forRoot(), TypeOrmModule.forFeature([Task])],
   controllers: [TasksController],
   providers: [TasksService],
+  exports: [TasksModule]
 })
-export class TasksModule { }
+export class TasksModule {}
