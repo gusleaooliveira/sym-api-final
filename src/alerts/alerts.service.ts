@@ -1,22 +1,26 @@
-import { Injectable } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm'; 
-import { Repository } from 'typeorm'; 
-import { CreateAlertDto } from './dto/create-alert.dto';
-import { UpdateAlertDto } from './dto/update-alert.dto';
-import { Alert } from './entities/alert.entity';
+import { Injectable } from "@nestjs/common";
+import { InjectRepository } from "@nestjs/typeorm";
+import { Repository } from "typeorm";
+import { CreateAlertDto } from "./dto/create-alert.dto";
+import { UpdateAlertDto } from "./dto/update-alert.dto";
+import { Alert } from "./entities/alert.entity";
 
 @Injectable()
 export class AlertsService {
   constructor(
-    @InjectRepository(Alert) private AlertRepository: Repository<Alert>,
+    @InjectRepository(Alert) private AlertRepository: Repository<Alert>
   ) { }
 
   async create(createAlertDto: CreateAlertDto) {
     return await this.AlertRepository.save(createAlertDto);
   }
 
-  async findAll(id: number) {
-    return await this.AlertRepository.find({
+  async findAll() {
+    return await this.AlertRepository.find();
+  }
+
+  async findAllByUser(id: number) {
+    return await this.AlertRepository.findOne({
       where: {
         user_id: id,
       },
