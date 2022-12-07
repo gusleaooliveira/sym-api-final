@@ -21,6 +21,14 @@ export class RevenuesService {
         user_id: user_id,
       },
     });
+
+
+    
+
+  }
+
+  async findAllService(){
+    return await this.RevenueRepository.find()
   }
 
   async findOne(id: number) {

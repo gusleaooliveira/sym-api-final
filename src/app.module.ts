@@ -10,6 +10,7 @@ import { RevenuesModule } from './revenues/revenues.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AlertsModule } from './alerts/alerts.module';
+import { MailModule } from './mail/mail.module';
 
 @Module({
   imports: [
@@ -27,6 +28,7 @@ import { AlertsModule } from './alerts/alerts.module';
     RevenuesModule,
     DashboardModule,
     AlertsModule,
+    MailModule,
   ],
   controllers: [AppController],
   providers: [AppService],

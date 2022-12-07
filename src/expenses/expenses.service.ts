@@ -23,6 +23,11 @@ export class ExpensesService {
     });
   }
 
+  async findAllService(){
+    return await this.ExpenseRepository.find()
+  }
+
+
   async findByUserId(id: number) {
     return await this.ExpenseRepository.find({
       where: {
