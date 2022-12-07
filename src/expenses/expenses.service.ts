@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { FindManyOptions, Repository } from 'typeorm';
 import { CreateExpenseDto } from './dto/create-expense.dto';
 import { UpdateExpenseDto } from './dto/update-expense.dto';
 import { Expense } from './entities/expense.entity';
@@ -35,6 +35,11 @@ export class ExpensesService {
       },
     });
   }
+
+  async findByParams(options: FindManyOptions){
+    return await this.ExpenseRepository.find(options)
+  }
+
 
   async findOne(id: number) {
     return await this.ExpenseRepository.findOne({

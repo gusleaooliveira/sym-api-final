@@ -8,6 +8,7 @@ import {
   Delete,
   Put,
   UseGuards,
+  Query,
 } from "@nestjs/common";
 import { ExpensesService } from "./expenses.service";
 import { CreateExpenseDto } from "./dto/create-expense.dto";
@@ -19,6 +20,7 @@ import { RevenuesService } from "src/revenues/revenues.service";
 import { AlertsService } from "src/alerts/alerts.service";
 import { MailService } from "src/mail/mail.service";
 import { UsersService } from "src/users/users.service";
+import { FindManyOptions } from "typeorm";
 
 @ApiBearerAuth()
 @UseGuards(JwtAuthGuard)
@@ -71,11 +73,10 @@ export class ExpensesController {
       status = "Ultrapassou o limite";
       await this.mailService.sendUserConfirmation(user, status);
     } else {
-      status="Saldo ok";
+      status = "Saldo ok";
     }
 
     console.log("Status:", status);
-
   }
 
   @Post()
@@ -90,6 +91,23 @@ export class ExpensesController {
   @Get("/all/:user_id")
   findAll(@Param("user_id") user_id: number) {
     return this.expensesService.findAll(user_id);
+  }
+
+  @Get("/by-params/:user_id")
+  findParams(@Param("user_id") user_id: number, @Query() query) {
+    let { description, type_expense, frequency, date_expense, value } = query;
+
+    let option: FindManyOptions = {
+      where: [
+        { user_id: user_id, description: description },
+        { user_id: user_id, type: type_expense },
+        { user_id: user_id, frequency: frequency },
+        { user_id: user_id, date: date_expense },
+        { user_id: user_id, value: value },
+      ],
+    };
+
+    return this.expensesService.findByParams(option);
   }
 
   @Get(":id")
