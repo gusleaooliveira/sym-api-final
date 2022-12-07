@@ -67,7 +67,7 @@ export class ExpensesController {
     } else if (total_expenses == alerts_data.value) {
       status = "Chegou no limite";
       await this.mailService.sendUserConfirmation(user, status);
-    } else if (total_expenses >= alerts_data.value) {
+    } else if (total_expenses > alerts_data.value) {
       status = "Ultrapassou o limite";
       await this.mailService.sendUserConfirmation(user, status);
     } else {
