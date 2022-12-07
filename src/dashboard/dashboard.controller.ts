@@ -37,8 +37,6 @@ export class DashboardController {
   @Get()
   findAll() {
     return this.dashboardService.findAll();
-
-    
   }
 
   @Get(":id")
@@ -49,17 +47,27 @@ export class DashboardController {
     let total_expenses = 0;
     let total_revenues = 0;
     let total_saldo = 0;
-    const total_saidas_recorrentes = 0;
-    const total_saidas_eventuais = 0;
-    const total_entradas_recorrentes = 0;
-    const total_entradas_eventuais = 0;
+    let total_saidas_recorrentes = 0;
+    let total_saidas_eventuais = 0;
+    let total_entradas_recorrentes = 0;
+    let total_entradas_eventuais = 0;
 
     expenses_data.map((chave) => {
       total_expenses += chave.value;
+      if (chave.frequency == "Frequente") {
+        total_saidas_recorrentes += chave.value;
+      } else {
+        total_saidas_eventuais += chave.value;
+      }
     });
 
     revenues_data.map((chave) => {
       total_revenues += chave.value;
+      if (chave.frequency == "Frequente") {
+        total_entradas_recorrentes += chave.value;
+      } else {
+        total_entradas_eventuais += chave.value;
+      }
     });
 
     total_saldo = total_revenues - total_expenses;
